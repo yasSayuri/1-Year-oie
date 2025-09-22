@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Game — Namoro</title>
+
+  <!-- Identidade visual -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Reaproveita variáveis do projeto -->
+  <link rel="stylesheet" href="principal.css" />
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+  <div class="game-wrap">
+    <div class="game-stage">
+      <!-- HUD -->
+      <header class="hud">
+        <div class="lives" id="lives">
+          <!-- Vidas via JS -->
+        </div>
+
+        <div class="progress">
+          <span class="muted small">Progresso</span>
+          <div class="bar"><div class="fill" id="barFill" style="width:0%"></div></div>
+          <span class="count"><span id="qIndex">1</span>/10</span>
+        </div>
+      </header>
+
+      <!-- Pista (bovo -> bb) -->
+      <div class="track" id="track">
+        <img src="bovo.png" alt="bovo" class="bovo" id="bovo">
+        <img src="bb.png" alt="bb" class="bb" id="bb">
+      </div>
+
+      <!-- Cartão de pergunta -->
+      <section class="question-card" id="questionCard" aria-live="polite">
+        <h3 id="qTitle">Pergunta</h3>
+        <div id="qBody" class="q-body"><!-- alternativas via JS --></div>
+      </section>
+
+      <!-- Ações -->
+      <div class="actions">
+        <button id="answerBtn" class="btn grad">Responder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Modal GAME OVER -->
+  <div class="modal-overlay hidden" id="gameOver" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="goTitle">
+      <div class="modal-header">
+        <span class="material-icons big">sentiment_very_dissatisfied</span>
+        <h3 id="goTitle">GAME OVER</h3>
+      </div>
+      <p class="muted">O ovo quebrou.</p>
+      <div class="egg-alt"><span class="material-icons">egg_alt</span></div>
+      <div class="modal-actions">
+        <button id="retryBtn" class="btn grad">Jogar novamente</button>
+        <button id="giveupBtn" class="btn ghost">Desisto, se vira bovo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal VITÓRIA -->
+  <div class="modal-overlay hidden" id="gameWin" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+      <div class="modal-header">
+        <span class="material-icons big">emoji_events</span>
+        <h3 id="winTitle">VOCÊ VENCEU</h3>
+      </div>
+      <p class="muted">o bovo está feliz com seu amor</p>
+
+      <div class="pair">
+        <img src="bovo.png" class="pair-img" alt="bovo feliz">
+        <span class="material-icons heart">favorite</span>
+        <img src="bb.png" class="pair-img" alt="bb feliz">
+      </div>
+
+      <div class="modal-actions">
+        <button id="retryWinBtn" class="btn grad">Jogar novamente</button>
+        <button id="exitWinBtn" class="btn ghost">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

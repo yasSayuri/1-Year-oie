@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estatísticas</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+  <!-- Base + página -->
+  <link rel="stylesheet" href="principal.css" />
+  <link rel="stylesheet" href="estatisticas.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- Sidebar -->
+    <aside class="sidebar glass">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="brand-title">Namoro</div>
+          <div class="brand-sub">Dashboard</div>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="principal.html" class="menu-item"><span class="material-icons">dashboard</span> Dashboard</a>
+        <a href="calendar.html" class="menu-item"><span class="material-icons">calendar_today</span> Calendário</a>
+        <a href="jogo.html" class="menu-item"><span class="material-icons">play_arrow</span> Jogar</a>
+        <a class="menu-item active"><span class="material-icons">bar_chart</span> Estatísticas</a>
+        <a href="configuracao.html" class="menu-item"><span class="material-icons">settings</span> Configurações</a>
+        <a href="index.html" class="menu-item"><span class="material-icons">logout</span> Sair</a>
+      </nav>
+    </aside>
+
+    <!-- Conteúdo -->
+    <main class="content">
+      <section class="topbar glass">
+        <div>
+          <h2 class="hello">Estatísticas 2025</h2>
+        </div>
+      </section>
+
+      <!-- KPIs -->
+      <section class="kpi-grid">
+        <div class="kpi glass" data-title="Total Los Bragas">
+          <div class="kpi-top">
+            <span class="material-icons kpi-ico">storefront</span>
+            <span class="kpi-badge">Los Bragas</span>
+          </div>
+          <div class="kpi-num" id="kpiLosBragas">--</div>
+          <div class="kpi-sub muted">Idas em 2025</div>
+        </div>
+
+        <div class="kpi glass" data-title="Total The Best">
+          <div class="kpi-top">
+            <span class="material-icons kpi-ico">restaurant</span>
+            <span class="kpi-badge alt">The Best</span>
+          </div>
+          <div class="kpi-num" id="kpiTheBest">--</div>
+          <div class="kpi-sub muted">Idas em 2025</div>
+        </div>
+
+        <div class="kpi glass" data-title="Duo LoL">
+          <div class="kpi-top">
+            <span class="material-icons kpi-ico">sports_esports</span>
+            <span class="kpi-badge gray">LoL Duo</span>
+          </div>
+          <div class="kpi-num" id="kpiLol">0</div>
+          <div class="kpi-sub muted">Partidas em 2025</div>
+        </div>
+
+        <div class="kpi glass" data-title="Amor">
+          <div class="kpi-top">
+            <span class="material-icons kpi-ico">favorite</span>
+            <span class="kpi-badge heart">Amor</span>
+          </div>
+          <div class="kpi-num" id="kpiLove">∞</div>
+          <div class="kpi-sub muted">Crescendo sempre</div>
+        </div>
+
+        <div class="kpi glass" data-title="Outros rolês">
+          <div class="kpi-top">
+            <span class="material-icons kpi-ico">emoji_people</span>
+            <span class="kpi-badge soft">Outros</span>
+          </div>
+          <div class="kpi-num" id="kpiOutros">--</div>
+          <div class="kpi-sub muted">Estimativa 2025</div>
+        </div>
+      </section>
+
+      <!-- Gráficos -->
+      <section class="stats-grid">
+
+        <div class="card glass stat-card" data-title="Idas ao Los Bragas">
+          <div class="card-row">
+            <div class="card-title">Idas ao Los Bragas</div>
+            <div class="muted small">por mês</div>
+          </div>
+          <div class="chart-wrap tall">
+            <canvas id="chartLosBragas"></canvas>
+          </div>
+        </div>
+
+        <div class="card glass stat-card" data-title="Idas ao The Best">
+          <div class="card-row">
+            <div class="card-title">Idas ao The Best</div>
+            <div class="muted small">por mês</div>
+          </div>
+          <div class="chart-wrap tall">
+            <canvas id="chartTheBest"></canvas>
+          </div>
+        </div>
+
+        <div class="card glass stat-card" data-title="Comparativo de Lugares">
+          <div class="card-row">
+            <div class="card-title">Comparativo de Lugares</div>
+            <div class="muted small">participação %</div>
+          </div>
+          <div class="chart-wrap donut">
+            <canvas id="chartComparativo"></canvas>
+            <div id="donutLegend" class="legend"></div>
+          </div>
+        </div>
+
+        <div class="card glass stat-card" data-title="Jogos de duo no LoL">
+          <div class="card-row">
+            <div class="card-title">Jogos de duo no LoL</div>
+            <div class="muted small">mês a mês (spoiler: 0)</div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="chartLol"></canvas>
+          </div>
+        </div>
+
+        <div class="card glass stat-card wide" data-title="O quanto eu te amo">
+          <div class="card-row">
+            <div class="card-title">O quanto eu te amo</div>
+            <div class="muted small">tendência infinita</div>
+          </div>
+          <div class="chart-wrap huge">
+            <canvas id="chartLove"></canvas>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="estatisticas.js"></script>
+</body>
+</html>

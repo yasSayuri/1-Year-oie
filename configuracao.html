@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Configurações</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="configuracao.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar glass">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="brand-title">Namoro</div>
+          <div class="brand-sub">Dashboard</div>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="principal.html" class="menu-item"><span class="material-icons">dashboard</span> Dashboard</a>
+        <a href="calendar.html" class="menu-item"><span class="material-icons">calendar_today</span> Calendário</a>
+        <a href="jogo.html" class="menu-item"><span class="material-icons">play_arrow</span> Jogar</a>
+        <a href="estatisticas.html" class="menu-item"><span class="material-icons">bar_chart</span> Estatísticas</a>
+        <a class="menu-item active"><span class="material-icons">settings</span> Configurações</a>
+        <a href="index.html" class="menu-item"><span class="material-icons">logout</span> Sair</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section class="topbar glass">
+        <div>
+          <h2 class="hello">Configurações</h2>
+          <p class="muted">Ajuste suas preferências</p>
+        </div>
+      </section>
+
+      <!-- card do yasmin -->
+      <section class="card glass">
+        <div class="card-row">
+          <div>
+            <div class="card-title">Yasmin</div>
+            <div class="muted small">Ajuste suas configurações conforme o seu gosto</div>
+          </div>
+        </div>
+        <div class="prefs-grid" id="prefsGrid"></div>
+      </section>
+
+      <!-- Personalização: input + 2 botões na mesma linha -->
+      <section class="card glass">
+        <div class="card-row">
+          <div>
+            <div class="card-title">Personalização</div>
+            <div class="muted small">Crie traços de personalidade</div>
+          </div>
+        </div>
+
+        <div class="personalizacao-grid one-col">
+          <div class="field field-row">
+            <input
+              id="traitInput"
+              class="field-input"
+              type="text"
+              placeholder="Escreva aqui um traço de personalidade para adicionar no componente 'Yasmin'"
+            />
+            <button id="traitAdd" class="btn-grad" type="button">+ Add</button>
+            <button id="openUpdates" class="btn-secondary" type="button">Ver atualizações</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- card do victor -->
+      <section class="card glass">
+        <div class="card-row">
+          <div>
+            <div class="card-title">Victor</div>
+            <div class="muted small">Ajuste as suas configurações</div>
+          </div>
+        </div>
+        <div class="prefs-grid" id="prefsVictor"></div>
+      </section>
+    </main>
+  </div>
+
+<!-- Modal SEM fundo -->
+<div id="updatesModal" class="ymodal" aria-hidden="true">
+  <div class="ymodal-card" role="dialog" aria-modal="true" aria-labelledby="updatesTitle">
+    <button class="ymodal-close" type="button" aria-label="Fechar">
+      <span class="material-icons" aria-hidden="true">close</span>
+    </button>
+    <h3 id="updatesTitle" class="ymodal-title">
+      Essas personalizações serão trabalhadas no software do cérebro de Yasmin
+    </h3>
+    <div id="customList" class="ymodal-body custom-list"></div>
+  </div>
+</div>
+
+  <script src="configuracao.js"></script>
+</body>
+</html>

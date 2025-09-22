@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajude o bovo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="principal.css" />
+  <link rel="stylesheet" href="jogo.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="stage" id="stage">
+      <div class="story" id="story" aria-live="polite"></div>
+
+      <div class="actions">
+        <button id="noBtn" class="btn ghost">Não, se vira</button>
+        <button id="yesBtn" class="btn grad">Sim, tudo pelo bovo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay hidden" id="denyModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="denyTitle">
+      <h3 id="denyTitle">Blz então mano</h3>
+      <p class="muted">Redirecionando em <span id="count">3</span>…</p>
+      <button id="cancelRedirect" class="btn link">Cancelar</button>
+    </div>
+  </div>
+
+  <script src="jogo.js"></script>
+</body>
+</html>

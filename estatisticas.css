@@ -1,0 +1,125 @@
+:root{
+  --bg1:#f2e6ee; --bg2:#977dff; --ink:#1f2337; --muted:#7e8aa3;
+  --glass: rgba(255,255,255,.55); --ring: rgba(255,255,255,.4);
+  --purple:#7c3aed; --pink:#ec4899; --blue:#3b82f6; --green:#10b981; --orange:#f59e0b;
+}
+
+/* topbar: search enxuta e à direita (como no calendário) */
+.topbar .top-actions{ margin-left:auto; width:auto; max-width:none; }
+.topbar .search{ flex:0 0 auto; width:280px; border-radius:16px; padding:10px 14px; }
+
+/* KPIs */
+.kpi-grid{
+  display:grid; gap:12px;
+  grid-template-columns: repeat(5, 1fr);
+}
+.kpi{
+  padding:14px; display:flex; flex-direction:column; gap:6px;
+  border:1px solid var(--ring); border-radius:14px;
+}
+.kpi-top{ display:flex; align-items:center; gap:8px; }
+.kpi-ico{ font-size:20px; color:var(--purple); }
+.kpi-badge{
+  font-size:12px; font-weight:700; color:#fff; padding:4px 8px; border-radius:999px;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+}
+.kpi-badge.alt{ background: linear-gradient(90deg, #977dff, #6145d1); }
+.kpi-badge.gray{ background: linear-gradient(90deg, #a3a3a3, #737373); }
+.kpi-badge.heart{ background: linear-gradient(90deg, #fb7185, #ec4899); }
+.kpi-badge.soft{ background: linear-gradient(90deg, #a78bfa, #c084fc); }
+.kpi-num{ font-size:26px; font-weight:800; }
+.kpi-sub{ font-size:12px; }
+
+/* Grid dos gráficos */
+.stats-grid{
+  display:grid; gap:12px; margin-top:4px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.stat-card .chart-wrap{ height:260px; }
+.stat-card .chart-wrap.tall{ height:280px; }
+.stat-card .chart-wrap.donut{ height:300px; display:grid; place-items:center; }
+.stat-card.wide{ grid-column: 1 / -1; }
+.stat-card .chart-wrap.huge{ height:340px; }
+
+/* Legend do donut */
+.legend{ display:flex; flex-wrap:wrap; gap:10px 14px; margin-top:8px; color:var(--muted); font-size:13px; }
+.legend .item{ display:inline-flex; align-items:center; gap:8px; }
+.legend .dot{ width:12px; height:12px; border-radius:50%; border:2px solid #fff; }
+
+/* Responsivo */
+@media (max-width: 1200px){
+  .kpi-grid{ grid-template-columns: repeat(3, 1fr); }
+  .stats-grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 700px){
+  .kpi-grid{ grid-template-columns: repeat(2, 1fr); }
+  .topbar .search{ width: 100%; }
+}
+
+/* Compacção semelhante ao dashboard */
+.content{ gap:12px; }
+.card{ padding:12px; }
+
+/* --- Layout sem corte e sem scroll --- */
+html, body { height:100vh; overflow:hidden; }
+.page { height:100%; }
+.content{ height:100%; min-height:0; display:flex; flex-direction:column; }
+
+/* a grade de gráficos ocupa todo o espaço que sobrar */
+.stats-grid{
+  flex:1 1 auto;          /* pega o resto abaixo do topo/KPIs */
+  min-height:0;           /* MUITO importante p/ permitir encolher */
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);   /* 3 fileiras iguais de altura */
+  gap:10px;
+  overflow:hidden;        /* nada de scroll interno */
+}
+
+/* o card estica e o gráfico preenche 100% da linha/coluna */
+.stat-card{
+  display:flex; flex-direction:column;
+  min-height:0;
+}
+.stat-card .chart-wrap{
+  flex:1 1 auto;
+  min-height:0;
+  height:100% !important;     /* override nas alturas fixas antigas */
+}
+
+/* canvases ocupam 100% da área do chart-wrap */
+.stat-card .chart-wrap canvas{
+  width:100% !important;
+  height:100% !important;
+  display:block;
+}
+
+/* card “Amor” ocupa a última fileira inteira */
+.stat-card.wide{ grid-column: 1 / -1; grid-row: 3; }
+
+/* compacta um tiquinho o topo p/ caber com folga */
+.topbar{ padding:12px; }
+.kpi-grid{ margin-bottom:4px; gap:10px; }
+.kpi{ padding:10px; border-radius:12px; }
+.kpi-num{ font-size:22px; }
+
+/* Donut: canvas em cima + legenda embaixo com folga */
+.stat-card .chart-wrap.donut{
+  display:grid;
+  grid-template-rows: 1fr auto;
+  justify-items:center;
+  row-gap:10px;
+  padding:6px 0 12px; /* aumente este bottom se precisar */
+}
+
+/* Legenda mais estável e centralizada */
+.legend{
+  margin: 0;
+  margin-top: -10px;
+  padding: 2px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 14px;
+  font-size: 12px;
+}

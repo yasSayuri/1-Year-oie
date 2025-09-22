@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calendário</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="principal.css" />
+  <link rel="stylesheet" href="calendar.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar glass">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="brand-title">Namoro</div>
+          <div class="brand-sub">Dashboard</div>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="principal.html" class="menu-item"><span class="material-icons">dashboard</span> Dashboard</a>
+        <a class="menu-item active"><span class="material-icons">calendar_today</span> Calendário</a>
+        <a href="jogo.html" class="menu-item"><span class="material-icons">play_arrow</span>Jogar</a>
+        <a href="estatisticas.html" class="menu-item"><span class="material-icons">bar_chart</span> Estatísticas</a>
+        <a href="configuracao.html" class="menu-item"><span class="material-icons">settings</span> Configurações</a>
+        <a href="index.html" class="menu-item"><span class="material-icons">logout</span>Sair</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section class="topbar glass">
+        <div>
+          <h2 class="hello">Calendário 2025</h2>
+          <p class="muted">Clique em um dia para ver os eventos.</p>
+        </div>
+        <div class="top-actions">
+          <div class="search">
+            <span class="material-icons">search</span>
+            <input type="text" id="calSearch" placeholder="Pesquisar evento por título..." />
+            <button id="calSearchClear" class="clear-btn hidden" aria-label="Limpar busca">
+              <span class="material-icons">close</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="cal-layout">
+  <div class="cal-left">
+    <div class="month-nav glass">
+      <button id="prevMonth" class="icon-btn" title="Mês anterior" aria-label="Mês anterior">
+        <span class="material-icons">chevron_left</span>
+      </button>
+      <h3 id="monthLabel" class="month-label">Mês • Ano</h3>
+      <button id="nextMonth" class="icon-btn" title="Próximo mês" aria-label="Próximo mês">
+        <span class="material-icons">chevron_right</span>
+      </button>
+    </div>
+
+    <div id="monthGrid" class="month-grid glass" aria-label="Calendário mensal"></div>
+  </div>
+
+  <aside class="day-panel glass" aria-live="polite">
+    <header class="day-header">
+      <div class="day-title-wrap">
+        <h3 id="dayTitle" class="day-title">Selecione um dia</h3>
+        <span id="daySub" class="muted small"></span>
+      </div>
+      <button id="addEventBtn" class="icon-btn" title="Adicionar evento" aria-label="Adicionar evento">
+        <span class="material-icons">add</span>
+      </button>
+    </header>
+
+    <ul id="eventsList" class="events-list">
+      <li class="muted">Nenhum dia selecionado.</li>
+    </ul>
+  </aside>
+</section>
+    </main>
+  </div>
+  <div id="eventModal" class="modal-overlay hidden" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Fechar">
+        <span class="material-icons">close</span>
+      </button>
+      <h3 id="modalTitle">Adicionar evento</h3>
+      <p class="muted small">Preencha e salve para ver a bolinha roxa no dia escolhido.</p>
+
+      <form id="eventForm" class="event-form">
+        <label>
+          <span>Título</span>
+          <input type="text" id="evtTitle" required placeholder="Ex.: Jantar romântico" />
+        </label>
+        <label>
+          <span>Data</span>
+          <input type="date" id="evtDate" required />
+        </label>
+        <label>
+          <span>Descrição</span>
+          <textarea id="evtDesc" rows="3" placeholder="Detalhes do evento"></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="button" class="btn ghost" id="evtCancel">Cancelar</button>
+          <button type="submit" class="btn-grad">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="calendar.js"></script>
+</body>
+</html>

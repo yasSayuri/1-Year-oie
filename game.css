@@ -1,0 +1,143 @@
+* { box-sizing: border-box }
+html, body { height:100% }
+body {
+  margin:0;
+  font-family:"Chakra Petch", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--ink);
+  background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+  overflow:hidden;
+}
+
+.game-wrap { height:100dvh; padding:16px; display:grid; place-items:center }
+.game-stage{
+  position:relative;
+  width:min(1100px,96vw);
+  height:min(680px,90vh);
+  border-radius:18px;
+  border:2px solid rgba(255,255,255,.95);
+  box-shadow:0 20px 60px rgba(31,35,55,.28), inset 0 0 0 1px rgba(255,255,255,.35);
+  background: transparent;
+  padding:16px 16px 92px;
+}
+
+/* HUD */
+.hud{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:4px 6px 8px;
+}
+.lives { display:flex; gap:8px; align-items:center }
+.life {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border-radius:10px;
+  background: rgba(255,255,255,.7); border:1px solid var(--ring);
+  color:#7c3aed;
+}
+.life .material-icons{ font-size:20px }
+.life.lost{ opacity:.35; filter:grayscale(0.4) }
+
+.progress{
+  display:flex; align-items:center; gap:10px; margin-left:auto;
+}
+.progress .bar{
+  width:220px; height:10px; border-radius:999px;
+  background: rgba(255,255,255,.55); overflow:hidden;
+  border:1px solid var(--ring);
+}
+.progress .fill{
+  height:100%; width:0%;
+  background: linear-gradient(90deg,#7c3aed,#f472b6);
+}
+
+/* Pista */
+.track{
+  position:relative;
+  height: 130px;           /* você reduziu, mantive */
+  margin: 10px 8px 16px;
+  border-radius:16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
+  border:1px solid var(--ring);
+  overflow:hidden;
+}
+.bovo, .bb{
+  position:absolute; bottom:22px; 
+  width:84px; height:auto; user-select:none; pointer-events:none;
+}
+.bovo{ left:18px; transform: translateX(0); transition: transform .35s ease }
+.bb  { right:18px }
+
+/* Card de pergunta */
+.question-card{
+  position:relative;
+  margin: 0 auto;
+  width:min(760px, 94%); 
+  margin-top: 55px; /* como você colocou */
+  background: rgba(255,255,255,.65);
+  border:1px solid var(--ring);
+  border-radius:16px;
+  padding:16px 18px;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+.question-card h3{ margin:0 0 8px 0 }
+.q-body{ display:grid; gap:10px }
+.alt{
+  display:flex; gap:10px; align-items:center;
+  background:rgba(255,255,255,.7);
+  border:1px solid var(--ring);
+  border-radius:12px; padding:10px 12px;
+}
+.alt input{ accent-color:#7c3aed; transform: scale(1.1) }
+
+/* Ações */
+.actions{
+  position:absolute; right:16px; bottom:16px;
+}
+.btn{
+  border:0; cursor:pointer; border-radius:12px; padding:10px 14px;
+  font-weight:700; transition: filter .15s ease, transform .05s ease;
+}
+.btn:active{ transform: translateY(1px) }
+.btn.grad{ color:#fff; background: linear-gradient(90deg,#7c3aed,#f472b6) }
+.btn.grad:hover{ filter:brightness(.95) }
+.btn.ghost{ color:#7c3aed; background: rgba(255,255,255,.7); border:1px solid var(--ring) }
+.btn.ghost:hover{ filter: brightness(0.98) }
+
+/* Toast */
+.toast{
+  position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
+  background:#1f2337; color:#fff; padding:10px 14px; border-radius:10px;
+  opacity:0; pointer-events:none; transition: opacity .2s ease, transform .2s ease;
+  box-shadow:0 10px 24px rgba(0,0,0,.2);
+}
+.toast.show{ opacity:1; transform: translateX(-50%) translateY(-4px) }
+.toast.good{ background:#16a34a }
+.toast.bad { background:#ef4444 }
+.toast.info{ background:#334155 }
+
+/* Modais */
+.modal-overlay{ position: fixed; inset:0; z-index:50; background: rgba(0,0,0,.28); display:grid; place-items:center }
+.modal{
+  width:min(460px, 92vw);
+  background: var(--glass);
+  backdrop-filter: blur(25px);
+  border:1px solid var(--ring);
+  border-radius:16px;
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
+  padding:18px 18px 20px;
+  text-align:center;
+}
+.modal-header{ display:flex; gap:10px; align-items:center; justify-content:center }
+.modal-header .big{ font-size: 30px; color:#7c3aed }
+.egg-alt .material-icons{ font-size: 40px; color:#7c3aed }
+.modal-actions{ display:flex; gap:10px; justify-content:center; margin-top:10px }
+.hidden{ display:none !important }
+
+/* Vitória: par + coração */
+.pair{ display:flex; align-items:center; justify-content:center; gap:12px; margin:8px 0 4px }
+.pair-img{ width:72px; height:auto }
+.heart{ color:#7c3aed; font-size:40px }
+
+@media (max-width: 780px){
+  .game-stage{ padding:12px 12px 92px }
+  .progress .bar{ width:160px }
+  .bovo, .bb{ width:70px; bottom:18px }
+}

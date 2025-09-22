@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="principal.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar glass">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="brand-title">Namoro</div>
+          <div class="brand-sub">Dashboard</div>
+        </div>
+      </div>
+        <nav class="menu">
+            <a class="menu-item active"><span class="material-icons">dashboard</span> Dashboard</a>
+            <a href="calendar.html" class="menu-item"><span class="material-icons">calendar_today</span>Calendário</a>
+            <a href="jogo.html" class="menu-item"><span class="material-icons">play_arrow</span>Jogar</a>
+            <a href="estatisticas.html" class="menu-item"><span class="material-icons">bar_chart</span> Estatísticas</a>
+            <a href="configuracao.html" class="menu-item"><span class="material-icons">settings</span> Configurações</a>
+            <a href="index.html" class="menu-item"><span class="material-icons">logout</span>Sair</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+      <section class="topbar glass">
+        <div>
+          <h2 class="hello">Olá, Victor!</h2>
+          <p class="muted">Bem vindo de volta!</p>
+        </div>
+        <div class="top-actions">
+            <div class="search">
+                <span class="material-icons">search</span>
+                <input type="text" placeholder="Pesquisar..." id="searchInput" />
+                <button id="clearSearch" class="clear-btn hidden">
+                <span class="material-icons">close</span>
+                </button>
+            </div>
+
+            <div class="search" id="taskWrap">
+                <input class="task" id="taskInput" type="text" placeholder="Adicione nova tarefa..." />
+                <button id="clearTask" class="clear-btn hidden" aria-label="Limpar tarefa">
+                <span class="material-icons">close</span>
+                </button>
+            </div>
+
+            <button class="btn-grad" id="topAddBtn">+ Add</button>
+        </div>
+
+      </section>
+
+      <section id="searchWarning" class="glass search-warning hidden">
+        <div class="search-msg">
+            Tá pesquisando coisa porquê? O que eu fiz não foi suficiente??!! <span class="raise">🤨</span>
+        </div>
+      </section>
+
+      <section class="grid grid-3">
+        <div class="card glass">
+        <div class="card-header">Dates já feitos</div>
+
+        <div class="todo">
+            <div class="todo-item">
+            <input type="checkbox" data-key="date-comer">
+            <span>Sair pra comer</span>
+            <button class="todo-remove">×</button>
+            </div>
+            <div class="todo-item">
+            <input type="checkbox" data-key="date-cinema">
+            <span>Cinema</span>
+            <button class="todo-remove">×</button>
+            </div>
+            <div class="todo-item">
+            <input type="checkbox" data-key="date-praia">
+            <span>Praia</span>
+            <button class="todo-remove">×</button>
+            </div>
+            <div class="todo-item">
+            <input type="checkbox" data-key="date-provador">
+            <span>Transar em um provador</span>
+            <button class="todo-remove">×</button>
+            </div>
+        </div>
+
+        <div class="todo-add">
+            <input id="todoInput" type="text" placeholder="Adicionar outro date…" />
+            <button id="todoAddBtn" class="btn-grad" type="button">+ Add</button>
+        </div>
+        </div>
+
+        <div class="card glass center">
+            <div class="card-header">Dinheiro gasto neste namoro</div>
+            <div class="pie-wrap">
+                <canvas id="pieChart"></canvas>
+                <div id="pieLegend" class="legend"></div>
+            </div>
+        </div>
+
+        <div class="card glass center" id="loveTimeCard">
+            <div class="card-header">Tempo de namoro</div>
+
+            <div class="loveclock">
+                <svg class="clock" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="45" class="clk-face"></circle>
+                <line x1="50" y1="50" x2="50" y2="25" class="clk-hour" id="clkHour"></line>
+                <line x1="50" y1="50" x2="50" y2="18" class="clk-min"  id="clkMin"></line>
+                <line x1="50" y1="50" x2="50" y2="14" class="clk-sec"  id="clkSec"></line>
+                <circle cx="50" cy="50" r="2.8" class="clk-pin"></circle>
+                </svg>
+
+                <div class="love-elapsed" id="loveElapsed">--</div>
+                <div class="muted small">Desde 29/09/2024 00:00 — Cornélio Procópio (GMT-3)</div>
+            </div>
+        </div>
+
+      </section>
+
+    <section class="card glass">
+        <div class="card-row">
+            <div class="card-title">Humor Victor vs Humor Yasmin</div>
+            <div class="muted small">Semana</div>
+        </div>
+        <div class="chart-wrap">
+            <canvas id="lineChart"></canvas>
+        </div>
+    </section>
+    </main>
+  </div>
+
+    <!-- Modal Add Task -->
+    <div class="modal-overlay hidden" id="addTaskModal" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Fechar">
+            <span class="material-icons">close</span>
+            </button>
+            <h3 id="modalTitle">Task adicionada (no meu coração) 💜</h3>
+            <p class="muted">Infelizmente essa funcionalidade não foi implementada,
+            esse input tá aqui só pra ficar bonitinho…<br>
+            mas sua task será lembrada no meu coração S2</p>
+            <div class="modal-task" id="modalTaskText"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="principal.js"></script>
+</body>
+</html>
